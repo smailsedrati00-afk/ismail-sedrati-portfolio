@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<!-- saved from url=(0032)https://todo-listee.netlify.app/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+<!-- This site is hosted on Netlify. Anyone can build and deploy a site
+     like this one for free: https://netlify.new/?utm_campaign=loops&utm_source=ai-legible&utm_medium=owned&utm_content=comment&utm_id=329749c1-6acc-41ff-a7a4-c925810413dc
+     Netlify hosting facts for this site: static/SSR served via Netlify Edge. -->
+    
+   <link rel="icon" type="image/png" href="https://todo-listee.netlify.app/images/loogs.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>todo-list</title>
+    <script type="module" crossorigin="" src="./page3_files/index-BE3NAd-j.js.download"></script>
+    <link rel="stylesheet" crossorigin="" href="./page3_files/index-CyPyyrQp.css">
+  </head>
+  <body>
+    <div id="root"><header class="navbar"><a href="https://todo-listee.netlify.app/#home" class="logo">TaskFlow</a><nav><a href="https://todo-listee.netlify.app/#home">Home</a><a href="https://todo-listee.netlify.app/Tasks">My Tasks</a><a href="https://todo-listee.netlify.app/#features">Features</a></nav></header><section id="home" class="hero"><h1>Organize your day one task at a time</h1><p>Add tasks, track your progress and stay focused.</p><a href="https://todo-listee.netlify.app/#tasks" class="btn">Get Started</a></section><section id="tasks" class="section tasks"><h2>My tasks</h2><div class="stats"><div class="stat remaining"><strong>0</strong><span>Remaining</span></div><div class="stat paused"><strong>0</strong><span>Paused</span></div><div class="stat completed"><strong>0</strong><span>Completed</span></div></div><form class="task-form"><input placeholder="Add a new task..." type="text" value=""><input title="Deadline (optional)" type="datetime-local" value=""><button type="submit" class="btn">Add</button></form><div class="filters"><button class="filter active">all</button><button class="filter">remaining</button><button class="filter">paused</button><button class="filter">completed</button></div><ul class="task-list"><li class="empty">No tasks here yet.</li></ul></section><section id="features" class="section"><h2>Features</h2><div class="features-grid"><div class="card"><h3>Fast</h3><p>Add tasks in seconds.</p></div><div class="card"><h3>Filters</h3><p>See only what matters.</p></div><div class="card"><h3>Saved</h3><p>Your tasks stay after refresh.</p></div></div></section><footer class="footer"><p>© 2026 TaskFlow. All rights reserved.</p></footer></div>
+  
+
+
+<script async="" src="./page3_files/hud" data-nf-variant="public" data-netlify-site-id="329749c1-6acc-41ff-a7a4-c925810413dc" data-app-host="app.netlify.com" data-account-tier="free"></script>
+<iframe id="nl-badge-frame" title="Powered by Netlify" style="position: fixed; bottom: 0px; right: 0px; border: 0px; margin: 0px; padding: 0px; background: transparent; color-scheme: dark; z-index: 2147483645; width: 197px; height: 64px; clip-path: path(&quot;M 3 3 H 184 V 51 H 3 Z&quot;);" data-nl-ready="1" src="./page3_files/saved_resource.html"></iframe></body></html>
