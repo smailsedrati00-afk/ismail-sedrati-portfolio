@@ -7,6 +7,9 @@ interface ContactSectionProps {
   onOpenInbox?: () => void;
 }
 
+const CONTACT_API_URL =
+  'https://6acea62cf338359cf1c39cb3.mockapi.io/v1ismail/contact';
+
 export const ContactSection: React.FC<ContactSectionProps> = ({
   onMessageSent,
   onOpenInbox,
@@ -63,34 +66,30 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
     setLoading(true);
 
     try {
-      const response = await fetch('/api/contact', {
+      const response = await fetch(CONTACT_API_URL, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
+        headers: { 'Content-Type': 'application/json' },
+               body: JSON.stringify({
+          fullname: formData.name.trim(),
+          email: formData.email.trim(),
+          subject: formData.subject.trim(),
+          yourmessage: formData.message.trim(),
+          createdAt: new Date().toISOString(),
+        }),
       });
 
-      const result = await response.json();
-
-      if (response.ok && result.success) {
+      if (response.ok) {
         setStatus({
           type: 'success',
           message:
-            result.message ||
             'Thank you! Your message has been sent successfully to Ismail Sedrati.',
         });
         setFormData({ name: '', email: '', subject: '', message: '' });
         if (onMessageSent) onMessageSent();
       } else {
-        if (result.errors) {
-          setFieldErrors(result.errors);
-        }
         setStatus({
           type: 'error',
-          message:
-            result.message ||
-            'Failed to send your message. Please check the fields and try again.',
+          message: 'Failed to send your message. Please try again.',
         });
       }
     } catch (err) {
@@ -98,7 +97,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
       setStatus({
         type: 'error',
         message:
-          'Network error: unable to connect to the Node.js backend. Please verify your connection or try again.',
+          'Network error: unable to send your message. Please check your connection and try again.',
       });
     } finally {
       setLoading(false);
@@ -209,7 +208,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
               Send a Direct Message
             </h3>
             <p className="text-xs sm:text-sm text-[#A5A7AD] mt-1">
-              Submissions are validated and stored on the Node.js + Express backend.
+              Submissions are validated and sent securely to Ismail's inbox.
             </p>
           </div>
 
