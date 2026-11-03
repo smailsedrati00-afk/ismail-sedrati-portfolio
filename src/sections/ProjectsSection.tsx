@@ -14,7 +14,10 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenProjectM
   const [filter, setFilter] = useState<'All' | 'Full Stack' | 'Frontend' | 'E-Commerce'>('All');
 
   useEffect(() => {
-    axios.get('http://127.0.0.1:8000/api/projects')
+    // Kheddam b .env variable bash ila bddlti l-adresse l-telephone wla l-production ytbdl bohdou
+    const apiUrl = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000/api';
+
+    axios.get(`${apiUrl}/projects`)
       .then(response => {
         if (Array.isArray(response.data) && response.data.length > 0) {
           setProjects(response.data);
@@ -24,7 +27,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenProjectM
         setLoading(false);
       })
       .catch(error => {
-        console.warn("Laravel API ma-khddamch (normal f production/mobile), kan-st-3mlo portfolioData:", error);
+        console.warn("Laravel API ma-khddamch, kan-st-3mlo portfolioData:", error);
         setProjects(PORTFOLIO_DATA.projects);
         setLoading(false);
       });
