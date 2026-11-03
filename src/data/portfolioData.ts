@@ -88,9 +88,9 @@ export const PORTFOLIO_DATA = {
       icon: 'GraduationCap',
     },
     {
-      value: '4+',
+      value: '3+',
       label: 'PROJECTS COMPLETED',
-      description: 'C-Style, Cavo-Coffee, Fragrance of Life & Todo-Liste',
+      description: 'C-Style, Cavo-Coffee & Todo-Liste',
       icon: 'FolderGit2',
     },
     {
@@ -148,27 +148,6 @@ export const PORTFOLIO_DATA = {
         'Interactive drink and food specialty catalog',
         'Interactive "Explore Menu" and "Our Story" sections',
         'Fluid navigation with subtle background treatments',
-      ],
-    },
-    {
-      id: 'fragrance-of-life',
-      name: 'FRAGRANCE OF LIFE',
-      subtitle: 'Luxury Perfume E-Commerce Experience',
-      description:
-        'Boutique de parfums de luxe développée avec backend Laravel, PHP, base de données MySQL et Tailwind CSS.',
-      fullDescription:
-        'Fragrance of Life is an upscale fragrance boutique crafted for luxury perfume collections. Powered by a robust relational database schema and Laravel server, it features scent note pyramids (Top, Heart, Base), artisanal bottle showcases, bottle volume selection, secure cart checkout, and customer reviews.',
-      image: '/src/assets/images/fragrance_of_life_preview_1793669782604.jpg',
-      technologies: ['Laravel', 'PHP', 'MySQL', 'Tailwind CSS', 'JavaScript'],
-      liveUrl: 'https://c-stylee.netlify.app/',
-      githubUrl: 'https://github.com/sedrati-ismail/fragrance-of-life',
-      category: 'Full Stack',
-      featured: true,
-      highlights: [
-        'Relational MySQL database for product variants and customer orders',
-        'Detailed olfactive pyramid breakdowns for each perfume',
-        'Sophisticated obsidian & gold editorial presentation',
-        'Admin dashboard capability for inventory & sales tracking',
       ],
     },
     {
