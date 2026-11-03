@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import axios from 'axios';
-import { Project } from '../data/portfolioData';
+import { PORTFOLIO_DATA, Project } from '../data/portfolioData';
 import { ProjectCard } from '../components/ProjectCard';
 
 interface ProjectsSectionProps {
@@ -9,18 +9,23 @@ interface ProjectsSectionProps {
 }
 
 export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenProjectModal }) => {
-  const [projects, setProjects] = useState<Project[]>([]);
+  const [projects, setProjects] = useState<Project[]>(PORTFOLIO_DATA.projects);
   const [loading, setLoading] = useState<boolean>(true);
   const [filter, setFilter] = useState<'All' | 'Full Stack' | 'Frontend' | 'E-Commerce'>('All');
 
   useEffect(() => {
     axios.get('http://127.0.0.1:8000/api/projects')
       .then(response => {
-        setProjects(response.data);
+        if (Array.isArray(response.data) && response.data.length > 0) {
+          setProjects(response.data);
+        } else {
+          setProjects(PORTFOLIO_DATA.projects);
+        }
         setLoading(false);
       })
       .catch(error => {
-        console.error("Mochkil f jbd l-projets:", error);
+        console.warn("Laravel API ma-khddamch (normal f production/mobile), kan-st-3mlo portfolioData:", error);
+        setProjects(PORTFOLIO_DATA.projects);
         setLoading(false);
       });
   }, []);
@@ -28,11 +33,12 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenProjectM
   const filteredProjects =
     filter === 'All'
       ? projects
-      : projects.filter((p: any) => p.category === filter);
+      : projects.filter((p) => p.category === filter);
 
   return (
     <section id="work" className="py-24 relative bg-[#17191F]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Header matching reference */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div>
             <div className="flex items-center gap-2 mb-2">
@@ -46,6 +52,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenProjectM
             </h2>
           </div>
 
+          {/* Interactive Filter Tabs */}
           <div className="flex flex-wrap items-center gap-1.5 p-1 bg-[#22252D] rounded-xl border border-white/10 self-start md:self-auto">
             {(['All', 'Full Stack', 'Frontend', 'E-Commerce'] as const).map((cat) => (
               <button
@@ -63,6 +70,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenProjectM
           </div>
         </div>
 
+        {/* Projects Grid */}
         {loading ? (
           <div className="text-center py-12">
             <p className="text-[#A5A7AD] text-sm animate-pulse">Kan-charger les projets...</p>
@@ -83,6 +91,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenProjectM
           </div>
         )}
 
+        {/* Bottom Banner Prompt to collaborate */}
         <div className="mt-12 text-center">
           <p className="text-xs sm:text-sm text-[#A5A7AD]">
             Looking for something specific or customized?{' '}
