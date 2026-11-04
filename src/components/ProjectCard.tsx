@@ -1,6 +1,6 @@
 import React from 'react';
 import { ArrowUpRight, Github, ExternalLink, Eye } from 'lucide-react';
-import { Project } from '../data/portfolioData';
+import { getLocalProject, Project } from '../data/portfolioData';
 
 interface ProjectCardProps {
   project: Project;
@@ -23,6 +23,13 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onOpenDetails
           src={projectImage}
           alt={projectName}
           referrerPolicy="no-referrer"
+          onError={(event) => {
+            const fallbackImage = getLocalProject(project)?.image;
+
+            if (fallbackImage && event.currentTarget.getAttribute('src') !== fallbackImage) {
+              event.currentTarget.src = fallbackImage;
+            }
+          }}
           className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
         />
 

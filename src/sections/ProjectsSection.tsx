@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import axios from 'axios';
-import { PORTFOLIO_DATA, Project } from '../data/portfolioData';
+import { getLocalProject, PORTFOLIO_DATA, Project } from '../data/portfolioData';
 import { ProjectCard } from '../components/ProjectCard';
 
 interface ProjectsSectionProps {
@@ -20,7 +20,17 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenProjectM
     axios.get(`${apiUrl}/projects`)
       .then(response => {
         if (Array.isArray(response.data) && response.data.length > 0) {
-          setProjects(response.data);
+          setProjects(
+            response.data.map((project: Project) => {
+              const localProject = getLocalProject(project);
+
+              return {
+                ...localProject,
+                ...project,
+                image: localProject?.image || project.image || '',
+              };
+            }),
+          );
         } else {
           setProjects(PORTFOLIO_DATA.projects);
         }

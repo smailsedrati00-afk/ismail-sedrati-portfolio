@@ -158,7 +158,7 @@ export const PORTFOLIO_DATA = {
         'Application de gestion de tâches : ajout, modification, suppression, suivi du statut et organisation des priorités quotidiennes.',
       fullDescription:
         'Todo-Liste (TaskFlow) helps individuals prioritize and conquer daily goals one task at a time. Provides intuitive status counters (Remaining, Paused, Completed), clean filtering, and fast local storage syncing.',
-      image: '/assets/aistudio/image_bf75fa6a.png',
+      image: '/images/pagee3.png',
       technologies: ['React.js', 'Vite', 'Tailwind CSS', 'LocalStorage', 'State Management'],
       liveUrl: 'https://todo-listee.netlify.app/',
       githubUrl: 'https://github.com/sedrati-ismail/todo-list',
@@ -448,4 +448,25 @@ export const PORTFOLIO_DATA = {
         'Validation responsive multi-supports, contrôle de la qualité du code et mise en ligne opérationnelle.',
     },
   ] as ProcessStep[],
+};
+
+export const getLocalProject = (
+  project: Partial<Project> & { title?: string },
+): Project | undefined => {
+  const searchText = [project.id, project.name, project.title]
+    .filter((value): value is string => Boolean(value))
+    .join('')
+    .toLowerCase()
+    .replace(/[^a-z0-9]/g, '');
+
+  return PORTFOLIO_DATA.projects.find((localProject) => {
+    const localId = localProject.id.toLowerCase().replace(/[^a-z0-9]/g, '');
+    const localName = localProject.name.toLowerCase().replace(/[^a-z0-9]/g, '');
+
+    return (
+      searchText.includes(localId) ||
+      searchText.includes(localName) ||
+      (localProject.id === 'todo-liste' && searchText.includes('todolist'))
+    );
+  });
 };

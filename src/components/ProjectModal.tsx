@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { X, ExternalLink, Github, CheckCircle2, Layers } from 'lucide-react';
-import { Project } from '../data/portfolioData';
+import { getLocalProject, Project } from '../data/portfolioData';
 
 interface ProjectModalProps {
   project: Project | null;
@@ -53,6 +53,13 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
               src={project.image}
               alt={project.name}
               referrerPolicy="no-referrer"
+              onError={(event) => {
+                const fallbackImage = getLocalProject(project)?.image;
+
+                if (fallbackImage && event.currentTarget.getAttribute('src') !== fallbackImage) {
+                  event.currentTarget.src = fallbackImage;
+                }
+              }}
               className="w-full h-full object-cover object-top"
             />
           </div>
