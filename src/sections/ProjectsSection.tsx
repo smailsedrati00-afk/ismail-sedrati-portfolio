@@ -6,15 +6,15 @@ import { ProjectCard } from '../components/ProjectCard';
 
 interface ProjectsSectionProps {
   onOpenProjectModal: (project: Project) => void;
+  onViewAllProjects: () => void;
 }
 
-export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenProjectModal }) => {
+export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenProjectModal, onViewAllProjects }) => {
   const [projects, setProjects] = useState<Project[]>(PORTFOLIO_DATA.projects);
   const [loading, setLoading] = useState<boolean>(true);
   const [filter, setFilter] = useState<'All' | 'Full Stack' | 'Frontend' | 'E-Commerce'>('All');
 
   useEffect(() => {
-    // Kheddam b .env variable bash ila bddlti l-adresse l-telephone wla l-production ytbdl bohdou
     const apiUrl = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000/api';
 
     axios.get(`${apiUrl}/projects`)
@@ -51,7 +51,8 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenProjectM
   return (
     <section id="work" className="py-24 relative bg-[#17191F]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header matching reference */}
+        
+        {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div>
             <div className="flex items-center gap-2 mb-2">
@@ -104,8 +105,19 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenProjectM
           </div>
         )}
 
-        {/* Bottom Banner Prompt to collaborate */}
+        {/* View All Projects Button */}
         <div className="mt-12 text-center">
+          <button
+            onClick={onViewAllProjects}
+            className="px-6 py-3 bg-[#22252D] hover:bg-[#2e323d] text-white text-sm font-semibold rounded-xl border border-white/10 transition-all inline-flex items-center gap-2 shadow-lg cursor-pointer"
+          >
+            <span>View All Projects</span>
+            <ArrowUpRight className="w-4 h-4" />
+          </button>
+        </div>
+
+        {/* Bottom Banner Prompt to collaborate */}
+        <div className="mt-6 text-center">
           <p className="text-xs sm:text-sm text-[#A5A7AD]">
             Looking for something specific or customized?{' '}
             <a
@@ -117,6 +129,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenProjectM
             </a>
           </p>
         </div>
+
       </div>
     </section>
   );
