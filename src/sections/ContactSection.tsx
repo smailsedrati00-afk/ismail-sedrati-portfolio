@@ -35,7 +35,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onMessageSent, o
     setSuccess(false);
 
     try {
-      const apiUrl = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000/api';
+      const apiUrl = import.meta.env.VITE_API_URL || '/api';
       
       const response = await axios.post(`${apiUrl}/contact`, formData);
 
